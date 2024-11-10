@@ -50,7 +50,8 @@ public class Laptop extends Product {
 
 	@Override
 	public String toString() {
-		return "Laptop{" +
+		return super.toString() +
+				"Laptop{" +
 				"brand = '" + brand + '\'' +
 				", size = " + size +
 				", cpuType = '" + cpuType + '\'' +

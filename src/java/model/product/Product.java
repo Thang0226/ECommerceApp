@@ -57,4 +57,15 @@ public abstract class Product implements Cloneable {
 
 	@Override
 	public abstract Product clone();
+
+	@Override
+	public String toString() {
+		return "Product{" +
+				"id = '" + id + '\'' +
+				", name = '" + name + '\'' +
+				", price = " + price +
+				", brand = '" + brand + '\'' +
+				", description = '" + description + '\'' +
+				'}';
+	}
 }

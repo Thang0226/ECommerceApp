@@ -41,7 +41,8 @@ public class MobilePhone extends Product {
 
 	@Override
 	public String toString() {
-		return "MobilePhone{" +
+		return super.toString() +
+				"MobilePhone{" +
 				"brand = '" + brand + '\'' +
 				", size = " + size +
 				", weight = " + weight +
