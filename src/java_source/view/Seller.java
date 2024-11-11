@@ -1,4 +1,4 @@
-package java_source.views;
+package java_source.view;
 
 import java_source.controller.product_control.ProductManager;
 

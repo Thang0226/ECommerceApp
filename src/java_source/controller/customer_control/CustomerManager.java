@@ -20,4 +20,18 @@ public class CustomerManager extends Manager<Customer> {
 		}
 		return customerManager;
 	}
+
+	@Override
+	public void loadList() {
+		super.loadList();
+	}
+
+	@Override
+	public void saveList() {
+		super.saveList();
+	}
+
+	public boolean addNewCustomer() {
+		return false;
+	}
 }

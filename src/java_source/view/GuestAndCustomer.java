@@ -1,4 +1,4 @@
-package java_source.views;
+package java_source.view;
 
 import java_source.controller.customer_control.CustomerManager;
 import java_source.controller.product_control.ProductManager;
@@ -24,7 +24,7 @@ public class GuestAndCustomer {
 			choice = input.nextInt();
 			switch (choice) {
 				case 1:
-//					cmanager.addNewCustomer();
+					cmanager.addNewCustomer();
 					break;
 				case 2:
 					pmanager.searchProduct();

@@ -38,6 +38,13 @@ public class Customer extends Guest {
 		this.password = password;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		Customer c = (Customer) obj;
+		return this.getName().equals(c.getName()) || this.getEmail().equals(c.getEmail())
+				|| this.getPassword().equals(c.getPassword());
+	}
+
 	public Cart getCart() {
 		try {
 			Cart cartClone = (Cart) cart.clone();
