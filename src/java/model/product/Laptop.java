@@ -1,27 +1,16 @@
 package java.model.product;
 
 public class Laptop extends Product {
-	private String brand;
-	private double size;
 	private String cpuType;
 	private String gpuType;
 	private int ramSize;
 
-	public Laptop(String id, String name, double price, String brand, String description, double size,
+	public Laptop(String id, String name, double price, String brand, String description,
 	              String cpuType, String gpuType, int ramSize) {
 		super(id, name, price, brand, description);
-		this.size = size;
 		this.cpuType = cpuType;
 		this.gpuType = gpuType;
 		this.ramSize = ramSize;
-	}
-
-	public double getSize() {
-		return size;
-	}
-
-	public void setSize(double size) {
-		this.size = size;
 	}
 
 	public String getCpuType() {
@@ -52,8 +41,6 @@ public class Laptop extends Product {
 	public String toString() {
 		return super.toString() +
 				"Laptop{" +
-				"brand = '" + brand + '\'' +
-				", size = " + size +
 				", cpuType = '" + cpuType + '\'' +
 				", gpuType = '" + gpuType + '\'' +
 				", ramSize = " + ramSize +
@@ -62,7 +49,7 @@ public class Laptop extends Product {
 
 	@Override
 	public Laptop clone() {
-		return new Laptop(getId(), getName(), getPrice(), getBrand(), getDescription(), getSize(),
+		return new Laptop(getId(), getName(), getPrice(), getBrand(), getDescription(),
 				getCpuType(), getGpuType(), getRamSize());
 	}
 }

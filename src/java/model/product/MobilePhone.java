@@ -1,18 +1,16 @@
 package java.model.product;
 
 public class MobilePhone extends Product {
-	private String brand;
 	private double size;
 	private double weight;
-	private String cameraType;
+	private int cameraRes;
 
 	public MobilePhone(String id, String name, double price, String brand, String description,
-	                   double size, double weight, String cameraType) {
+	                   double size, double weight, int cameraRes) {
 		super(id, name, price, brand, description);
-		this.brand = brand;
 		this.size = size;
 		this.weight = weight;
-		this.cameraType = cameraType;
+		this.cameraRes = cameraRes;
 	}
 
 	public double getSize() {
@@ -31,29 +29,27 @@ public class MobilePhone extends Product {
 		this.weight = weight;
 	}
 
-	public String getCameraType() {
-		return cameraType;
+	public int getCameraRes() {
+		return cameraRes;
 	}
 
-	public void setCameraType(String cameraType) {
-		this.cameraType = cameraType;
+	public void setCameraRes(int cameraRes) {
+		this.cameraRes = cameraRes;
 	}
 
 	@Override
 	public String toString() {
 		return super.toString() +
 				"MobilePhone{" +
-				"brand = '" + brand + '\'' +
 				", size = " + size +
 				", weight = " + weight +
-				", cameraType = '" + cameraType + '\'' +
+				", camera resolution = '" + cameraRes + '\'' +
 				'}';
 	}
-
 
 	@Override
 	public MobilePhone clone() {
 		return new MobilePhone(getId(), getName(), getPrice(), getBrand(), getDescription(),
-				getSize(), getWeight(), getCameraType());
+				getSize(), getWeight(), getCameraRes());
 	}
 }

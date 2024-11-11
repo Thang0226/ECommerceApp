@@ -1,6 +1,4 @@
-package java.controller;
-
-import java.util.List;
+package java.controller.abstracts;
 
 public interface IManager<T> {
 

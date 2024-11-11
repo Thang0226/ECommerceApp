@@ -1,5 +1,7 @@
-package java.controller;
+package java.controller.guest_control;
 
+import java.controller.abstracts.Manager;
+import java.controller.customer_control.CustomerManager;
 import java.model.Guest;
 
 public class GuestManager extends Manager<Guest> {

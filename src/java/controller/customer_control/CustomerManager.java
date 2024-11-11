@@ -1,5 +1,6 @@
-package java.controller;
+package java.controller.customer_control;
 
+import java.controller.abstracts.Manager;
 import java.model.Customer;
 
 public class CustomerManager extends Manager<Customer> {

@@ -1,5 +1,6 @@
-package java.controller;
+package java.controller.product_control;
 
+import java.controller.abstracts.Manager;
 import java.model.product.Product;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

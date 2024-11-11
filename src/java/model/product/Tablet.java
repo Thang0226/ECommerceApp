@@ -7,7 +7,7 @@ public class Tablet extends Product {
 
 	@Override
 	public Product clone() {
-		return null;
+		return new Tablet(getId(), getName(), getPrice(), getBrand(), getDescription());
 	}
 
 	@Override
