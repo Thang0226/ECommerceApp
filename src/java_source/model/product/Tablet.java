@@ -1,4 +1,4 @@
-package java.model.product;
+package java_source.model.product;
 
 public class Tablet extends Product {
 	public Tablet(String id, String name, double price, String brand, String description) {
@@ -12,6 +12,6 @@ public class Tablet extends Product {
 
 	@Override
 	public String toString() {
-		return super.toString();
+		return super.toString() + "-Tablet";
 	}
 }

@@ -1,6 +1,8 @@
-package java.model.product;
+package java_source.model.product;
 
-public abstract class Product implements Cloneable {
+import java.io.Serializable;
+
+public abstract class Product implements Cloneable, Serializable {
 	private String id;
 	private String name;
 	private double price;

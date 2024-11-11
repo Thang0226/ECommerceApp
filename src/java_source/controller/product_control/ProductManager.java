@@ -1,7 +1,10 @@
-package java.controller.product_control;
+package java_source.controller.product_control;
 
-import java.controller.abstracts.Manager;
-import java.model.product.Product;
+import java_source.controller.abstracts.Manager;
+import java_source.model.product.Product;
+import java_source.model.product.ProductFactory;
+import java_source.model.product.ProductType;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,6 +24,55 @@ public class ProductManager extends Manager<Product> {
 			}
 		}
 		return productManager;
+	}
+
+	public boolean addNewProduct() {
+		ProductType productType = inputProductType();
+		String id = inputID();
+		if (idExisted(id)) {
+			System.out.println("Product ID already existed. Please use another ID.");
+			return false;
+		}
+		ProductFactory factory = ProductFactory.getInstance();
+		Product newProduct = factory.getProduct(productType, id);
+		if (newProduct != null) {
+			add(newProduct);
+			return true;
+		}
+		return false;
+	}
+
+	private String inputID() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter product ID: ");
+		return scanner.nextLine();
+	}
+
+	private boolean idExisted(String id) {
+		for (Product product : list) {
+			if (product.getId().equals(id)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private ProductType inputProductType() {
+		System.out.print("Enter product type (Laptop/Tablet/Phone): ");
+		String type = (new Scanner(System.in)).nextLine();
+		type = type.toUpperCase();
+		return ProductType.valueOf(type);
+	}
+
+	public boolean deleteProduct() {
+		String id = inputID();
+		for (Product product : list) {
+			if (product.getId().equals(id)) {
+				remove(product);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public Product binarySearchByName(String name) {

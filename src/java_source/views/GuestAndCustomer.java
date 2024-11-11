@@ -1,19 +1,21 @@
-package java.view;
+package java_source.views;
 
-import java.util.*;
+import java_source.controller.customer_control.CustomerManager;
+import java.util.Scanner;
 
-public class Seller {
+public class GuestAndCustomer {
 	public static void main(String[] args) {
+		CustomerManager cmanager = CustomerManager.getInstance("data-storage/customers.xlsx");
 		Scanner input = new Scanner(System.in);
 		int choice;
 		while(true) {
 			System.out.println("""
-				\nMenu:
-					1. Add new product
-					2. Change a product
-					3. Delete a product
-					4. Search a product
-					4. Show all products
+				\nOptions:
+					1. Register new customer
+					2. Search product by name
+					3. Search products related to a string
+					4. Add a product to cart
+					5. Purchase an order
 					0. Exit
 				Enter your choice:""");
 			choice = input.nextInt();
@@ -22,13 +24,12 @@ public class Seller {
 					;
 					break;
 				case 2:
-					;
 					break;
 				case 3:
-					;
 					break;
 				case 4:
-					;
+					break;
+				case 5:
 					break;
 				case 0:
 					System.exit(0);

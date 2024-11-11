@@ -1,10 +1,10 @@
-package java.controller.abstracts;
+package java_source.controller.abstracts;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Manager<T> implements IManager<T>, Serializable {
+public abstract class Manager<T> implements IManager<T> {
 	protected List<T> list;
 	private String filePath;
 
@@ -50,6 +50,7 @@ public abstract class Manager<T> implements IManager<T>, Serializable {
 		try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath)))
 		{
 			list = (List<T>) inputStream.readObject();
+			System.out.println("List loaded.");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("Class not found exception");
@@ -66,7 +67,7 @@ public abstract class Manager<T> implements IManager<T>, Serializable {
 		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath)))
 		{
 			outputStream.writeObject(list);
-			System.out.println("List saved!");
+			System.out.println("List saved.");
 
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found!");

@@ -1,4 +1,4 @@
-package java.model.product;
+package java_source.model.product;
 
 import java.util.Scanner;
 
@@ -15,20 +15,17 @@ public class ProductFactory {
 		return factory;
 	}
 
-	public Product getProduct(ProductType type) {
+	public Product getProduct(ProductType type, String id) {
 		return switch (type) {
-			case LAPTOP -> inputNewLaptop();
-			case TABLET -> inputNewTablet();
-			case MOBILE -> inputNewMobile();
+			case LAPTOP -> inputNewLaptop(id);
+			case TABLET -> inputNewTablet(id);
+			case PHONE -> inputNewPhone(id);
 			default -> null;
 		};
 	}
 
-	private Product inputNewLaptop() {
+	private Product inputNewLaptop(String id) {
 		Scanner input = new Scanner(System.in);
-		System.out.println("\nEnter properties of new laptop product:");
-		System.out.print("Product ID: ");
-		String id = input.nextLine();
 		System.out.print("Name: ");
 		String name = input.nextLine();
 		System.out.print("Price: ");
@@ -39,36 +36,30 @@ public class ProductFactory {
 		String cpu = input.nextLine();
 		System.out.print("GPU: ");
 		String gpu = input.nextLine();
-		System.out.println("RAM size (GB): ");
+		System.out.print("RAM size (GB): ");
 		int ramSize = Integer.parseInt(input.nextLine());
-		System.out.println("Product description: ");
+		System.out.print("Product description: ");
 		String description = input.nextLine();
 
 		return new Laptop(id, name, price, brand, description, cpu, gpu, ramSize);
 	}
 
-	private Product inputNewTablet() {
+	private Product inputNewTablet(String id) {
 		Scanner input = new Scanner(System.in);
-		System.out.println("\nEnter properties of new tablet product:");
-		System.out.print("Product ID: ");
-		String id = input.nextLine();
 		System.out.print("Name: ");
 		String name = input.nextLine();
 		System.out.print("Price: ");
 		double price = Double.parseDouble(input.nextLine());
 		System.out.print("Brand: ");
 		String brand = input.nextLine();
-		System.out.println("Product description: ");
+		System.out.print("Product description: ");
 		String description = input.nextLine();
 
 		return new Tablet(id, name, price, brand, description);
 	}
 
-	private Product inputNewMobile() {
+	private Product inputNewPhone(String id) {
 		Scanner input = new Scanner(System.in);
-		System.out.println("\nEnter properties of new laptop product:");
-		System.out.print("Product ID: ");
-		String id = input.nextLine();
 		System.out.print("Name: ");
 		String name = input.nextLine();
 		System.out.print("Price: ");
@@ -79,9 +70,9 @@ public class ProductFactory {
 		double size = Double.parseDouble(input.nextLine());
 		System.out.print("Weight: ");
 		double weight = Double.parseDouble(input.nextLine());
-		System.out.println("Camera resolution (MP): ");
+		System.out.print("Camera resolution (MP): ");
 		int cameraRes = Integer.parseInt(input.nextLine());
-		System.out.println("Product description: ");
+		System.out.print("Product description: ");
 		String description = input.nextLine();
 
 		return new MobilePhone(id, name, price, brand, description, size, weight, cameraRes);

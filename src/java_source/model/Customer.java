@@ -1,4 +1,4 @@
-package java.model;
+package java_source.model;
 
 public class Customer extends Guest {
 	private String name;

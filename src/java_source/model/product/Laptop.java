@@ -1,4 +1,4 @@
-package java.model.product;
+package java_source.model.product;
 
 public class Laptop extends Product {
 	private String cpuType;
@@ -40,8 +40,8 @@ public class Laptop extends Product {
 	@Override
 	public String toString() {
 		return super.toString() +
-				"Laptop{" +
-				", cpuType = '" + cpuType + '\'' +
+				"-Laptop{" +
+				"cpuType = '" + cpuType + '\'' +
 				", gpuType = '" + gpuType + '\'' +
 				", ramSize = " + ramSize +
 				'}';

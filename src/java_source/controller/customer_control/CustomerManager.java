@@ -1,7 +1,7 @@
-package java.controller.customer_control;
+package java_source.controller.customer_control;
 
-import java.controller.abstracts.Manager;
-import java.model.Customer;
+import java_source.controller.abstracts.Manager;
+import java_source.model.Customer;
 
 public class CustomerManager extends Manager<Customer> {
 	private static CustomerManager customerManager;

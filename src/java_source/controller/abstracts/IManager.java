@@ -1,4 +1,4 @@
-package java.controller.abstracts;
+package java_source.controller.abstracts;
 
 public interface IManager<T> {
 

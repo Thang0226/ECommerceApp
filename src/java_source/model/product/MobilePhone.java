@@ -1,4 +1,4 @@
-package java.model.product;
+package java_source.model.product;
 
 public class MobilePhone extends Product {
 	private double size;
@@ -40,8 +40,8 @@ public class MobilePhone extends Product {
 	@Override
 	public String toString() {
 		return super.toString() +
-				"MobilePhone{" +
-				", size = " + size +
+				"-MobilePhone{" +
+				"size = " + size +
 				", weight = " + weight +
 				", camera resolution = '" + cameraRes + '\'' +
 				'}';

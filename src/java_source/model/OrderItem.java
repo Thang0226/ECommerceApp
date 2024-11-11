@@ -1,6 +1,6 @@
-package java.model;
+package java_source.model;
 
-import java.model.product.Product;
+import java_source.model.product.Product;
 
 public class OrderItem {
 	private Product product;

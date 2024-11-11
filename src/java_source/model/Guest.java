@@ -1,4 +1,4 @@
-package java.model;
+package java_source.model;
 
 public class Guest {
 	private String id;
