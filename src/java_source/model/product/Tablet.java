@@ -1,7 +1,12 @@
 package java_source.model.product;
 
+import java.io.Serial;
+
 public class Tablet extends Product {
-	public Tablet(String id, String name, double price, String brand, String description) {
+	@Serial
+	private static final long serialVersionUID = 4L;
+
+	public Tablet(int id, String name, int price, String brand, String description) {
 		super(id, name, price, brand, description);
 	}
 

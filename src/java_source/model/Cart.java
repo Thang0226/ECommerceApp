@@ -3,12 +3,10 @@ package java_source.model;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Cart {
-	private Guest guest;
-	private List<OrderItem> items;
+public class Cart implements Cloneable {
+	private final List<OrderItem> items;
 
-	public Cart(Guest guest) {
-		this.guest = guest;
+	public Cart() {
 		this.items = new LinkedList<>();
 	}
 
@@ -18,5 +16,10 @@ public class Cart {
 
 	public void removeOrderItem(OrderItem item) {
 		this.items.remove(item);
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }

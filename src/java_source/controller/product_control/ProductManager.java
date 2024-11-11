@@ -1,12 +1,12 @@
 package java_source.controller.product_control;
 
 import java_source.controller.abstracts.Manager;
+import java_source.controller.product_control.search.*;
+
 import java_source.model.product.Product;
 import java_source.model.product.ProductFactory;
 import java_source.model.product.ProductType;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ProductManager extends Manager<Product> {
 	private static ProductManager productManager;
@@ -28,7 +28,7 @@ public class ProductManager extends Manager<Product> {
 
 	public boolean addNewProduct() {
 		ProductType productType = inputProductType();
-		String id = inputID();
+		int id = inputID();
 		if (idExisted(id)) {
 			System.out.println("Product ID already existed. Please use another ID.");
 			return false;
@@ -42,15 +42,15 @@ public class ProductManager extends Manager<Product> {
 		return false;
 	}
 
-	private String inputID() {
+	private int inputID() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter product ID: ");
-		return scanner.nextLine();
+		return scanner.nextInt();
 	}
 
-	private boolean idExisted(String id) {
+	private boolean idExisted(int id) {
 		for (Product product : list) {
-			if (product.getId().equals(id)) {
+			if (product.getId() == id) {
 				return true;
 			}
 		}
@@ -65,9 +65,9 @@ public class ProductManager extends Manager<Product> {
 	}
 
 	public boolean deleteProduct() {
-		String id = inputID();
+		int id = inputID();
 		for (Product product : list) {
-			if (product.getId().equals(id)) {
+			if (product.getId() == id) {
 				remove(product);
 				return true;
 			}
@@ -75,34 +75,39 @@ public class ProductManager extends Manager<Product> {
 		return false;
 	}
 
-	public Product binarySearchByName(String name) {
-		int start = 0;
-		int end = list.size() - 1;
-		while (start <= end) {
-			int mid = (start + end) / 2;
-			int compare = list.get(mid).getName().compareToIgnoreCase(name);
-			if (compare == 0) {
-				return list.get(mid);
-			} else if (compare < 0) {
-				end = mid - 1;
-			} else {
-				start = mid + 1;
-			}
+	public void searchProduct() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("""
+				Search product by:
+				1. Brand
+				2. Name
+				3. Price
+				4. ID
+				5. Keyword
+				Enter your choice:""");
+		int choice = input.nextInt();
+		SearchContext searcher;
+		switch (choice) {
+			case 1:
+				searcher = new SearchContext(new SearchByBrand());
+				break;
+			case 2:
+				searcher = new SearchContext(new SearchByName());
+				break;
+			case 3:
+				searcher = new SearchContext(new SearchByPrice());
+				break;
+			case 4:
+				searcher = new SearchContext(new SearchByID());
+				break;
+			case 5:
+				searcher = new SearchContext(new SearchByKeyWord());
+				break;
+			default:
+				System.out.println("Not a choice!");
+				return;
 		}
-		return null;
-	}
-
-	public void searchByString(String str) {
-		Pattern pattern = Pattern.compile(str);
-		System.out.println("Products related to '" + str + "':");
-		for (Product product : list) {
-			Matcher nameMatcher = pattern.matcher(product.getName());
-			Matcher brandMatcher = pattern.matcher(product.getBrand());
-			Matcher descriptionMatcher = pattern.matcher(product.getDescription());
-			if (nameMatcher.find() || brandMatcher.find() || descriptionMatcher.find()) {
-				System.out.println(product);
-			}
-		}
+		searcher.search(list);
 	}
 
 	public void sortByPrice() {
@@ -112,22 +117,6 @@ public class ProductManager extends Manager<Product> {
 			needNextPass = false;
 			for (int j = 0; j < n - i - 1; j++) {
 				if (list.get(j).getPrice() > list.get(j + 1).getPrice()) {
-					needNextPass = true;
-					Product temp = list.get(j);
-					list.set(j, list.get(j + 1));
-					list.set(j + 1, temp);
-				}
-			}
-		}
-	}
-
-	public void sortByName() {
-		int n = list.size();
-		boolean needNextPass = true;
-		for (int i = 0; i < n - 1 && needNextPass; i++) {
-			needNextPass = false;
-			for (int j = 0; j < n - i - 1; j++) {
-				if (list.get(j).getName().compareToIgnoreCase(list.get(j + 1).getName()) > 0)  {
 					needNextPass = true;
 					Product temp = list.get(j);
 					list.set(j, list.get(j + 1));

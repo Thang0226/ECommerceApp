@@ -1,11 +1,16 @@
 package java_source.model.product;
 
+import java.io.Serial;
+
 public class Laptop extends Product {
+	@Serial
+	private static final long serialVersionUID = 2L;
+
 	private String cpuType;
 	private String gpuType;
 	private int ramSize;
 
-	public Laptop(String id, String name, double price, String brand, String description,
+	public Laptop(int id, String name, int price, String brand, String description,
 	              String cpuType, String gpuType, int ramSize) {
 		super(id, name, price, brand, description);
 		this.cpuType = cpuType;

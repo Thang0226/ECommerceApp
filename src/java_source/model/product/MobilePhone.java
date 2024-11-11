@@ -1,11 +1,16 @@
 package java_source.model.product;
 
+import java.io.Serial;
+
 public class MobilePhone extends Product {
+	@Serial
+	private static final long serialVersionUID = 3L;
+
 	private double size;
 	private double weight;
 	private int cameraRes;
 
-	public MobilePhone(String id, String name, double price, String brand, String description,
+	public MobilePhone(int id, String name, int price, String brand, String description,
 	                   double size, double weight, int cameraRes) {
 		super(id, name, price, brand, description);
 		this.size = size;

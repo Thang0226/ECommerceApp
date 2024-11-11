@@ -15,7 +15,7 @@ public class ProductFactory {
 		return factory;
 	}
 
-	public Product getProduct(ProductType type, String id) {
+	public Product getProduct(ProductType type, int id) {
 		return switch (type) {
 			case LAPTOP -> inputNewLaptop(id);
 			case TABLET -> inputNewTablet(id);
@@ -24,12 +24,12 @@ public class ProductFactory {
 		};
 	}
 
-	private Product inputNewLaptop(String id) {
+	private Product inputNewLaptop(int id) {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Name: ");
 		String name = input.nextLine();
 		System.out.print("Price: ");
-		double price = Double.parseDouble(input.nextLine());
+		int price = Integer.parseInt(input.nextLine());
 		System.out.print("Brand: ");
 		String brand = input.nextLine();
 		System.out.print("CPU: ");
@@ -44,12 +44,12 @@ public class ProductFactory {
 		return new Laptop(id, name, price, brand, description, cpu, gpu, ramSize);
 	}
 
-	private Product inputNewTablet(String id) {
+	private Product inputNewTablet(int id) {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Name: ");
 		String name = input.nextLine();
 		System.out.print("Price: ");
-		double price = Double.parseDouble(input.nextLine());
+		int price = Integer.parseInt(input.nextLine());
 		System.out.print("Brand: ");
 		String brand = input.nextLine();
 		System.out.print("Product description: ");
@@ -58,12 +58,12 @@ public class ProductFactory {
 		return new Tablet(id, name, price, brand, description);
 	}
 
-	private Product inputNewPhone(String id) {
+	private Product inputNewPhone(int id) {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Name: ");
 		String name = input.nextLine();
 		System.out.print("Price: ");
-		double price = Double.parseDouble(input.nextLine());
+		int price = Integer.parseInt(input.nextLine());
 		System.out.print("Brand: ");
 		String brand = input.nextLine();
 		System.out.print("Size: ");

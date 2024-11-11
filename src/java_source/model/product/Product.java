@@ -1,15 +1,19 @@
 package java_source.model.product;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public abstract class Product implements Cloneable, Serializable {
-	private String id;
+	@Serial
+	private static final long serialVersionUID = 1L;
+
+	private final int id;
 	private String name;
-	private double price;
+	private int price;
 	private String brand;
 	private String description;
 
-	public Product(String id, String name, double price, String brand, String description) {
+	protected Product(int id, String name, int price, String brand, String description) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
@@ -17,12 +21,8 @@ public abstract class Product implements Cloneable, Serializable {
 		this.description = description;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -33,11 +33,11 @@ public abstract class Product implements Cloneable, Serializable {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

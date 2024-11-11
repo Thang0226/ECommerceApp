@@ -13,26 +13,26 @@ public class Seller {
 		while(true) {
 			System.out.println("""
 				\nMenu:
-					1. Add new product
-					2. Change a product
-					3. Delete a product
-					4. Search a product
+					1. Search product
+					2. Add new product
+					3. Change a product
+					4. Delete a product
 					5. Show all products
 					0. Exit
 				Enter your choice:""");
 			choice = input.nextInt();
 			switch (choice) {
 				case 1:
-					pm.addNewProduct();
+					pm.searchProduct();
 					break;
 				case 2:
-					;
+					pm.addNewProduct();
 					break;
 				case 3:
-					pm.deleteProduct();
+//					pm.changeProduct();
 					break;
 				case 4:
-					;
+					pm.deleteProduct();
 					break;
 				case 5:
 					pm.display();

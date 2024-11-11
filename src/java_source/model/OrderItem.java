@@ -3,7 +3,7 @@ package java_source.model;
 import java_source.model.product.Product;
 
 public class OrderItem {
-	private Product product;
+	private final Product product;
 	private int quantity;
 	private double totalPrice;
 

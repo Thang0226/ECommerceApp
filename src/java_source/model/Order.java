@@ -4,12 +4,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Order implements Discount{
-	private int id;
+	private final int id;
 	private String address;
-	private LocalDateTime time;
-	private Customer customer;
-	private List<OrderItem> items;
-	private double totalAmount;
+	private final LocalDateTime time;
+	private final Customer customer;
+	private final List<OrderItem> items;
+	private final double totalAmount;
 
 	public Order(int id, String address, Customer customer, List<OrderItem> items) {
 		this.id = id;
