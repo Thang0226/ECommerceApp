@@ -1,4 +1,4 @@
-package java_source.model;
+package java_source.model.for_develop;
 
 import java_source.model.product.Product;
 

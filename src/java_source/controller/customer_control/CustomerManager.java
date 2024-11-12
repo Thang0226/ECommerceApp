@@ -93,11 +93,9 @@ public class CustomerManager extends Manager<Customer> {
 			System.out.println("Customer ID already existed. Please use another ID.");
 			return false;
 		}
-
 		final char NO = 'n';
 		boolean passed;
 		AddCustomer adder = new AddCustomer();
-
 		while (true) {
 			Customer newCustomer = adder.inputNewCustomer(id);
 			passed = adder.validateCustomerInfor(newCustomer);

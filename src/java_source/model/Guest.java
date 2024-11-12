@@ -1,5 +1,7 @@
 package java_source.model;
 
+import java_source.model.for_develop.Cart;
+
 public class Guest {
 	private int id;
 	protected Cart cart;

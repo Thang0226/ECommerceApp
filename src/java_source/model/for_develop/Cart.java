@@ -1,4 +1,4 @@
-package java_source.model;
+package java_source.model.for_develop;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class Cart implements Cloneable {
 	}
 
 	@Override
-	protected Object clone() throws CloneNotSupportedException {
+	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}
 }
