@@ -57,11 +57,8 @@ public class CustomerManager extends Manager<Customer> {
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(getFilePath());
-			// Write the CSV file header
 			fileWriter.append(FILE_HEADER);
-			// Add a new line separator after the header
 			fileWriter.append(NEW_LINE_SEPARATOR);
-			// Write new Customer object list to the CSV file
 			for (Customer customer : list) {
 				fileWriter.append(String.valueOf(customer.getId()));
 				fileWriter.append(DELIMITER);
@@ -96,21 +93,27 @@ public class CustomerManager extends Manager<Customer> {
 			System.out.println("Customer ID already existed. Please use another ID.");
 			return false;
 		}
+
 		final char NO = 'n';
 		boolean passed;
 		AddCustomer adder = new AddCustomer();
+
 		while (true) {
 			Customer newCustomer = adder.inputNewCustomer(id);
 			passed = adder.validateCustomerInfor(newCustomer);
 			if (passed) {
+				if (customerExisted(newCustomer)) {
+					System.out.println("Customer information already existed!");
+					return false;
+				}
 				add(newCustomer);
 				saveList();
 				return true;
+
 			} else {
 				System.out.println("Input new customer information again? (Y/N)");
-				String str = scanner.nextLine().toLowerCase();
-				char again = str.charAt(0);
-				if (again == NO) {
+				String again = scanner.nextLine().toLowerCase();
+				if (again.charAt(0) == NO) {
 					return false;
 				}
 			}
@@ -120,7 +123,7 @@ public class CustomerManager extends Manager<Customer> {
 	private int inputID() {
 		Scanner scanner = new Scanner(System.in);
 		try {
-			System.out.print("Enter product ID: ");
+			System.out.print("Enter customer ID: ");
 			int id = scanner.nextInt();
 			return id;
 		} catch (InputMismatchException e) {
@@ -132,6 +135,15 @@ public class CustomerManager extends Manager<Customer> {
 	private boolean idExisted(int id) {
 		for (Customer customer : list) {
 			if (customer.getId() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean customerExisted(Customer c) {
+		for (Customer customer : list) {
+			if (customer.equals(c)) {
 				return true;
 			}
 		}

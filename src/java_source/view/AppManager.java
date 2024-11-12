@@ -10,7 +10,7 @@ public class AppManager {
 	public static void main(String[] args) {
 		CustomerManager customerManager = CustomerManager.getInstance("data-storage/customers.csv");
 		ProductManager productManager = ProductManager.getInstance("data-storage/products.dat");
-		GuestManager guestManager = GuestManager.getInstance("data-storage/guests.dat");
+//		GuestManager guestManager = GuestManager.getInstance("data-storage/guests.dat");
 		Scanner input = new Scanner(System.in);
 		int choice;
 		while(true) {
@@ -34,7 +34,7 @@ public class AppManager {
 					customerManager.deleteCustomer();
 					break;
 				case 4:
-					guestManager.display();
+//					guestManager.display();
 					break;
 				case 0:
 					System.exit(0);

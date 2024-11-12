@@ -46,7 +46,7 @@ public abstract class Manager<T> implements IManager<T> {
 		try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath)))
 		{
 			list = (List<T>) inputStream.readObject();
-			System.out.println("List loaded.");
+			System.out.println("Product list loaded.");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("Class not found exception");
@@ -63,7 +63,7 @@ public abstract class Manager<T> implements IManager<T> {
 		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath)))
 		{
 			outputStream.writeObject(list);
-			System.out.println("List saved.");
+			System.out.println("Product list saved.");
 
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found!");

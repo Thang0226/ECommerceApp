@@ -39,7 +39,15 @@ public class Customer extends Guest {
 	@Override
 	public boolean equals(Object obj) {
 		Customer c = (Customer) obj;
-		return this.getName().equals(c.getName()) || this.getEmail().equals(c.getEmail())
-				|| this.getPassword().equals(c.getPassword());
+		return this.getName().equals(c.getName()) && this.getEmail().equals(c.getEmail());
+	}
+
+	@Override
+	public String toString() {
+		return "Customer{" +
+				"id = " + getId() +
+				", name = '" + name + '\'' +
+				", email = '" + email + '\'' +
+				'}';
 	}
 }
