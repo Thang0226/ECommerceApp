@@ -18,6 +18,8 @@ public class Seller {
 					3. Change a product
 					4. Delete a product
 					5. Show all products
+					6. Sort products in price ascending order
+					7. Sort products in price descending order
 					0. Exit
 				Enter your choice:""");
 			choice = input.nextInt();
@@ -35,6 +37,14 @@ public class Seller {
 					productManager.deleteProduct();
 					break;
 				case 5:
+					productManager.display();
+					break;
+				case 6:
+					productManager.sortByPriceAsc();
+					productManager.display();
+					break;
+				case 7:
+					productManager.sortByPriceDesc();
 					productManager.display();
 					break;
 				case 0:

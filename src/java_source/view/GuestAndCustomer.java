@@ -19,9 +19,10 @@ public class GuestAndCustomer {
 				\nOptions:
 					1. Register new customer
 					2. Search product
-					3. Sort products in price order
-					4. Add a product to cart
-					5. Purchase an order
+					3. Sort products in price ascending order
+					4. Sort products in price descending order
+					5. Add a product to cart
+					6. Purchase an order
 					0. Exit
 				Enter your choice:""");
 			choice = input.nextInt();
@@ -33,12 +34,16 @@ public class GuestAndCustomer {
 					productManager.searchProduct();
 					break;
 				case 3:
-					productManager.sortByPrice();
+					productManager.sortByPriceAsc();
 					productManager.display();
 					break;
 				case 4:
+					productManager.sortByPriceDesc();
+					productManager.display();
 					break;
 				case 5:
+					break;
+				case 6:
 					break;
 				case 0:
 					System.exit(0);

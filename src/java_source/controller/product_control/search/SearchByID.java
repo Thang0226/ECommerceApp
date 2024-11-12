@@ -38,19 +38,16 @@ public class SearchByID implements SearchStrategy {
 	}
 
 	private void sortByID(List<Product> list) {
-		// Bubble sort (improved using boolean needNextPass)
+		// Insertion sort
 		int n = list.size();
-		boolean needNextPass = true;
-		for (int i = 0; i < n - 1 && needNextPass; i++) {
-			needNextPass = false;
-			for (int j = 0; j < n - i - 1; j++) {
-				if (list.get(j).getId() > list.get(j + 1).getId()) {
-					needNextPass = true;
-					Product temp = list.get(j);
-					list.set(j, list.get(j + 1));
-					list.set(j + 1, temp);
-				}
+		for (int i = 0; i < n - 1; i++) {
+			int pos = i;
+			Product temp = list.get(i);
+			while (pos > 0 && temp.getId() < list.get(pos - 1).getId()) {
+				list.set(pos, list.get(pos - 1));
+				pos--;
 			}
+			list.set(pos, temp);
 		}
 	}
 }
