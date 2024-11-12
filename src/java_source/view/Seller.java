@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Seller {
 	public static void main(String[] args) {
-		ProductManager pm = ProductManager.getInstance("data-storage/products.dat");
+		ProductManager productManager = ProductManager.getInstance("data-storage/products.dat");
 
 		Scanner input = new Scanner(System.in);
 		int choice;
@@ -23,19 +23,19 @@ public class Seller {
 			choice = input.nextInt();
 			switch (choice) {
 				case 1:
-					pm.searchProduct();
+					productManager.searchProduct();
 					break;
 				case 2:
-					pm.addNewProduct();
+					productManager.addNewProduct();
 					break;
 				case 3:
-//					pm.changeProduct();
+//					productManager.changeProduct();
 					break;
 				case 4:
-					pm.deleteProduct();
+					productManager.deleteProduct();
 					break;
 				case 5:
-					pm.display();
+					productManager.display();
 					break;
 				case 0:
 					System.exit(0);

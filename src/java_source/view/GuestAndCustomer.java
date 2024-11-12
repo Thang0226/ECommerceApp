@@ -7,8 +7,11 @@ import java.util.Scanner;
 
 public class GuestAndCustomer {
 	public static void main(String[] args) {
-		CustomerManager cmanager = CustomerManager.getInstance("data-storage/customers.xlsx");
-		ProductManager pmanager = ProductManager.getInstance("data-storage/products.dat");
+		CustomerManager customerManager = CustomerManager.getInstance("data-storage/customers.csv");
+		ProductManager productManager = ProductManager.getInstance("data-storage/products.dat");
+
+		// Check guest or customer method
+
 		Scanner input = new Scanner(System.in);
 		int choice;
 		while(true) {
@@ -24,14 +27,14 @@ public class GuestAndCustomer {
 			choice = input.nextInt();
 			switch (choice) {
 				case 1:
-					cmanager.addNewCustomer();
+					customerManager.addNewCustomer();
 					break;
 				case 2:
-					pmanager.searchProduct();
+					productManager.searchProduct();
 					break;
 				case 3:
-					pmanager.sortByPrice();
-					pmanager.display();
+					productManager.sortByPrice();
+					productManager.display();
 					break;
 				case 4:
 					break;
