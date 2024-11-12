@@ -7,7 +7,7 @@ public class ProductFactory {
 
 	private ProductFactory() {
 	}
-
+	// Singleton
 	public static ProductFactory getInstance() {
 		if (factory == null) {
 			factory = new ProductFactory();
@@ -15,6 +15,7 @@ public class ProductFactory {
 		return factory;
 	}
 
+	// Factory method
 	public Product getProduct(ProductType type, int id) {
 		return switch (type) {
 			case LAPTOP -> inputNewLaptop(id);

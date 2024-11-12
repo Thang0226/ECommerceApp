@@ -1,4 +1,4 @@
-package java_source.controller.customer_control.add;
+package java_source.controller.customer_control.validate;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

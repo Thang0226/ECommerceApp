@@ -1,7 +1,7 @@
 package java_source.controller.customer_control;
 
 import java_source.controller.abstracts.Manager;
-import java_source.controller.customer_control.add.AddCustomer;
+import java_source.controller.customer_control.validate.CustomerValidate;
 import java_source.model.Customer;
 
 import java.io.*;
@@ -95,10 +95,10 @@ public class CustomerManager extends Manager<Customer> {
 		}
 		final char NO = 'n';
 		boolean passed;
-		AddCustomer adder = new AddCustomer();
+		CustomerValidate validator = new CustomerValidate();
 		while (true) {
-			Customer newCustomer = adder.inputNewCustomer(id);
-			passed = adder.validateCustomerInfor(newCustomer);
+			Customer newCustomer = inputNewCustomer(id);
+			passed = validator.validateCustomerInfor(newCustomer);
 			if (passed) {
 				if (customerExisted(newCustomer)) {
 					System.out.println("Customer information already existed!");
@@ -137,6 +137,18 @@ public class CustomerManager extends Manager<Customer> {
 			}
 		}
 		return false;
+	}
+
+	private Customer inputNewCustomer(int id) {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Name: ");
+		String name = input.nextLine();
+		System.out.print("Email: ");
+		String email = input.nextLine();
+		System.out.print("Password: ");
+		String password = input.nextLine();
+
+		return new Customer(id, name, email, password);
 	}
 
 	private boolean customerExisted(Customer c) {

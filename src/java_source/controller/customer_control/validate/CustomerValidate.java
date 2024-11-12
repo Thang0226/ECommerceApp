@@ -1,25 +1,12 @@
-package java_source.controller.customer_control.add;
+package java_source.controller.customer_control.validate;
 
 import java_source.model.Customer;
 
-import java.util.Scanner;
-
-public class AddCustomer {
-	public Customer inputNewCustomer(int id) {
-		Scanner input = new Scanner(System.in);
-		System.out.print("Name: ");
-		String name = input.nextLine();
-		System.out.print("Email: ");
-		String email = input.nextLine();
-		System.out.print("Password: ");
-		String password = input.nextLine();
-
-		return new Customer(id, name, email, password);
-	}
+public class CustomerValidate {
 
 	public boolean validateCustomerInfor(Customer customer) {
 		ValidateContext validator = new ValidateContext();
-
+		// Strategy pattern
 		validator.setValidateType(new NameValidate());
 		boolean passedName = validator.validate(customer.getName());
 		if (!passedName) {

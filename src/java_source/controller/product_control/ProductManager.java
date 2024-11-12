@@ -96,6 +96,7 @@ public class ProductManager extends Manager<Product> {
 				5. Keyword
 				Enter your choice:""");
 		int choice = input.nextInt();
+		// Strategy pattern
 		SearchContext searcher;
 		switch (choice) {
 			case 1:
