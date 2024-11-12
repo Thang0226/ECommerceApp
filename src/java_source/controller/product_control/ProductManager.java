@@ -6,6 +6,8 @@ import java_source.controller.product_control.search.*;
 import java_source.model.product.Product;
 import java_source.model.product.ProductFactory;
 import java_source.model.product.ProductType;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ProductManager extends Manager<Product> {
@@ -37,6 +39,7 @@ public class ProductManager extends Manager<Product> {
 		Product newProduct = factory.getProduct(productType, id);
 		if (newProduct != null) {
 			add(newProduct);
+			saveList();
 			return true;
 		}
 		return false;
@@ -44,8 +47,14 @@ public class ProductManager extends Manager<Product> {
 
 	private int inputID() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Enter product ID: ");
-		return scanner.nextInt();
+		try {
+			System.out.print("Enter product ID: ");
+			int id = scanner.nextInt();
+			return id;
+		} catch (InputMismatchException e) {
+			System.out.println("Error: Expect an integer ID number.");
+		}
+		return -1;
 	}
 
 	private boolean idExisted(int id) {
@@ -69,6 +78,7 @@ public class ProductManager extends Manager<Product> {
 		for (Product product : list) {
 			if (product.getId() == id) {
 				remove(product);
+				saveList();
 				return true;
 			}
 		}

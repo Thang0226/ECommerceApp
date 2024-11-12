@@ -1,9 +1,11 @@
 package java_source.controller.customer_control;
 
 import java_source.controller.abstracts.Manager;
+import java_source.controller.customer_control.add.AddCustomer;
 import java_source.model.Customer;
 
 import java.io.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CustomerManager extends Manager<Customer> {
@@ -81,20 +83,59 @@ public class CustomerManager extends Manager<Customer> {
 				fileWriter.flush();
 				fileWriter.close();
 			} catch (IOException e) {
-				System.out.println("Error while flushing/closing fileWriter !!!");
+				System.out.println("Error while flushing/closing fileWriter!");
 				System.out.println(e.getMessage());
 			}
 		}
 	}
 
 	public boolean addNewCustomer() {
-		return false;
+		Scanner scanner = new Scanner(System.in);
+		int id = inputID();
+		if (idExisted(id)) {
+			System.out.println("Customer ID already existed. Please use another ID.");
+			return false;
+		}
+		final char NO = 'n';
+		boolean passed;
+		AddCustomer adder = new AddCustomer();
+		while (true) {
+			Customer newCustomer = adder.inputNewCustomer(id);
+			passed = adder.validateCustomerInfor(newCustomer);
+			if (passed) {
+				add(newCustomer);
+				saveList();
+				return true;
+			} else {
+				System.out.println("Input new customer information again? (Y/N)");
+				String str = scanner.nextLine().toLowerCase();
+				char again = str.charAt(0);
+				if (again == NO) {
+					return false;
+				}
+			}
+		}
 	}
 
 	private int inputID() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Enter product ID: ");
-		return scanner.nextInt();
+		try {
+			System.out.print("Enter product ID: ");
+			int id = scanner.nextInt();
+			return id;
+		} catch (InputMismatchException e) {
+			System.out.println("Error: Expect an integer ID number.");
+		}
+		return -1;
+	}
+
+	private boolean idExisted(int id) {
+		for (Customer customer : list) {
+			if (customer.getId() == id) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public boolean deleteCustomer() {
@@ -102,6 +143,7 @@ public class CustomerManager extends Manager<Customer> {
 		for (Customer customer : list) {
 			if (customer.getId() == id) {
 				remove(customer);
+				saveList();
 				return true;
 			}
 		}

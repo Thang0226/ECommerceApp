@@ -33,7 +33,7 @@ public class SearchByID implements SearchStrategy {
 			System.out.println("Product ID not found");
 
 		} catch (InputMismatchException e) {
-			System.out.println("Error: Expect an integer price.");
+			System.out.println("Error: Expect an integer ID.");
 		}
 	}
 

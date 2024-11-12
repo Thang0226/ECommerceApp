@@ -24,16 +24,12 @@ public abstract class Manager<T> implements IManager<T> {
 
 	@Override
 	public boolean remove(T item) {
-		boolean removed = list.remove(item);
-		saveList();
-		return removed;
+		return list.remove(item);
 	}
 
 	@Override
 	public boolean add(T item) {
-		boolean added = list.add(item);
-		saveList();
-		return added;
+		return list.add(item);
 	}
 
 	@Override
@@ -46,7 +42,7 @@ public abstract class Manager<T> implements IManager<T> {
 	}
 
 	@Override
-	public void loadList() {
+	public void loadList() {    // Binary file by default
 		try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath)))
 		{
 			list = (List<T>) inputStream.readObject();
@@ -63,7 +59,7 @@ public abstract class Manager<T> implements IManager<T> {
 	}
 
 	@Override
-	public void saveList() {
+	public void saveList() {    // Binary file by default
 		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath)))
 		{
 			outputStream.writeObject(list);
