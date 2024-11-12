@@ -1,19 +1,19 @@
 package java_source.model;
 
 public class Guest {
-	private String id;
-	private Cart cart;
+	private int id;
+	protected Cart cart;
 
-	public Guest(String id) {
+	public Guest(int id) {
 		this.id = id;
 		this.cart = new Cart();
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

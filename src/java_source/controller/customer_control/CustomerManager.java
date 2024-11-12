@@ -2,6 +2,9 @@ package java_source.controller.customer_control;
 
 import java_source.controller.abstracts.Manager;
 import java_source.model.Customer;
+import java_source.model.product.Product;
+
+import java.util.Scanner;
 
 public class CustomerManager extends Manager<Customer> {
 	private static CustomerManager customerManager;
@@ -32,6 +35,23 @@ public class CustomerManager extends Manager<Customer> {
 	}
 
 	public boolean addNewCustomer() {
+		return false;
+	}
+
+	private int inputID() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter product ID: ");
+		return scanner.nextInt();
+	}
+
+	public boolean deleteCustomer() {
+		int id = inputID();
+		for (Customer customer : list) {
+			if (customer.getId() == id) {
+				remove(customer);
+				return true;
+			}
+		}
 		return false;
 	}
 }

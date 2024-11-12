@@ -4,14 +4,12 @@ public class Customer extends Guest {
 	private String name;
 	private String email;
 	private String password;
-	private final Cart cart;
 
-	public Customer(String id, String name, String email, String password) {
+	public Customer(int id, String name, String email, String password) {
 		super(id);
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		cart = new Cart();
 	}
 
 	public String getName() {
@@ -43,15 +41,5 @@ public class Customer extends Guest {
 		Customer c = (Customer) obj;
 		return this.getName().equals(c.getName()) || this.getEmail().equals(c.getEmail())
 				|| this.getPassword().equals(c.getPassword());
-	}
-
-	public Cart getCart() {
-		try {
-			Cart cartClone = (Cart) cart.clone();
-			return cartClone;
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 }
