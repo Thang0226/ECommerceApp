@@ -17,6 +17,7 @@ import java.util.Scanner;
 public class ProductManager extends Manager<Product> {
 	private static ProductManager productManager;
 	private SortContext sortMethod;
+	private SearchContext searcher;
 
 	private ProductManager(String filePath) {
 		super(filePath);
@@ -105,7 +106,6 @@ public class ProductManager extends Manager<Product> {
 				Enter your choice:""");
 		int choice = input.nextInt();
 		// Strategy pattern
-		SearchContext searcher;
 		switch (choice) {
 			case 1:
 				searcher = new SearchContext(new SearchByBrand());
@@ -133,7 +133,7 @@ public class ProductManager extends Manager<Product> {
 		sortMethod.setSortMethod(new SortByID());
 		sortMethod.sort(list);
 	}
-
+	// Strategy pattern
 	public void sortByPriceAsc() {
 		sortMethod.setSortMethod(new SortByPriceAsc());
 		sortMethod.sort(list);
