@@ -1,5 +1,6 @@
 package java_source.controller.product_control.search;
 
+import java_source.controller.product_control.sort.SortByID;
 import java_source.model.product.Product;
 
 import java.util.InputMismatchException;
@@ -38,6 +39,7 @@ public class SearchByID implements SearchStrategy {
 	}
 
 	private void sortByID(List<Product> list) {
-
+		SortByID sortByID = new SortByID();
+		sortByID.sort(list);
 	}
 }
