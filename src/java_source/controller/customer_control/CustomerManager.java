@@ -38,11 +38,11 @@ public class CustomerManager extends Manager<Customer> {
 			String line = br.readLine(); // cancel header at first row
 			while ((line = br.readLine()) != null) {
 				String[] propertyArray = line.split(DELIMITER);
-				int id = Integer.parseInt(propertyArray[0]);
+//				int id = Integer.parseInt(propertyArray[0]);
 				String name = propertyArray[1];
 				String email = propertyArray[2];
 				String password = propertyArray[3];
-				list.add(new Customer(id, name, email, password));
+				list.add(new Customer(name, email, password));
 			}
 			System.out.println("Customer list loaded.");
 
@@ -88,17 +88,12 @@ public class CustomerManager extends Manager<Customer> {
 
 	public boolean addNewCustomer() {
 		Scanner scanner = new Scanner(System.in);
-		int id = inputID();
-		if (idExisted(id)) {
-			System.out.println("Customer ID already existed. Please use another ID.");
-			return false;
-		}
 		final char NO = 'n';
 		boolean passed;
 		CustomerValidate validator = new CustomerValidate();
 		while (true) {
-			Customer newCustomer = inputNewCustomer(id);
-			passed = validator.validateCustomerInfor(newCustomer);
+			Customer newCustomer = inputNewCustomer();
+			passed = validator.validateCustomerInfor(newCustomer);  // validate input information
 			if (passed) {
 				if (customerExisted(newCustomer)) {
 					System.out.println("Customer information already existed!");
@@ -130,16 +125,16 @@ public class CustomerManager extends Manager<Customer> {
 		return -1;
 	}
 
-	private boolean idExisted(int id) {
-		for (Customer customer : list) {
-			if (customer.getId() == id) {
-				return true;
-			}
-		}
-		return false;
-	}
+//	private boolean idExisted(int id) {
+//		for (Customer customer : list) {
+//			if (customer.getId() == id) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 
-	private Customer inputNewCustomer(int id) {
+	private Customer inputNewCustomer() {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Name: ");
 		String name = input.nextLine();
@@ -148,7 +143,7 @@ public class CustomerManager extends Manager<Customer> {
 		System.out.print("Password: ");
 		String password = input.nextLine();
 
-		return new Customer(id, name, email, password);
+		return new Customer(name, email, password);
 	}
 
 	private boolean customerExisted(Customer c) {

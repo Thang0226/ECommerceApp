@@ -5,8 +5,8 @@ public class Customer extends Guest {
 	private String email;
 	private String password;
 
-	public Customer(int id, String name, String email, String password) {
-		super(id);
+	public Customer(String name, String email, String password) {
+		super();
 		this.name = name;
 		this.email = email;
 		this.password = password;

@@ -31,7 +31,7 @@ public class Seller {
 					productManager.addNewProduct();
 					break;
 				case 3:
-//					productManager.changeProduct();
+					productManager.changeProduct();
 					break;
 				case 4:
 					productManager.deleteProduct();

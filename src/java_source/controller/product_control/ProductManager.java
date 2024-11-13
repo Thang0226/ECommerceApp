@@ -36,12 +36,8 @@ public class ProductManager extends Manager<Product> {
 	}
 
 	public boolean addNewProduct() {
-		ProductType productType = inputProductType();
 		int id = inputID();
-		if (idExisted(id)) {
-			System.out.println("Product ID already existed. Please use another ID.");
-			return false;
-		}
+		ProductType productType = inputProductType();
 		ProductFactory factory = ProductFactory.getInstance();
 		Product newProduct = factory.getProduct(productType, id);
 		if (newProduct != null) {
@@ -65,15 +61,6 @@ public class ProductManager extends Manager<Product> {
 		return -1;
 	}
 
-	private boolean idExisted(int id) {
-		for (Product product : list) {
-			if (product.getId() == id) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	private ProductType inputProductType() {
 		System.out.print("Enter product type (Laptop/Tablet/Phone): ");
 		String type = (new Scanner(System.in)).nextLine();
@@ -81,14 +68,29 @@ public class ProductManager extends Manager<Product> {
 		return ProductType.valueOf(type);
 	}
 
+	public void changeProduct() {
+		int id = inputID();
+	}
+
 	public boolean deleteProduct() {
 		int id = inputID();
+		final String YES = "YES";
+//		final String NO = "NO";
+
 		for (Product product : list) {
 			if (product.getId() == id) {
-				remove(product);
-				sortByID();
-				saveList();
-				return true;
+
+				System.out.println("Are you sure you want to delete this product? (Yes/No)");
+				System.out.println(product);
+				String confirm = (new Scanner(System.in)).nextLine();
+				confirm = confirm.toUpperCase();
+
+				if (confirm.equals(YES)) {
+					remove(product);
+					sortByID();
+					saveList();
+					return true;
+				}
 			}
 		}
 		return false;
