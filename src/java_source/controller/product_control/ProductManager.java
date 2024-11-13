@@ -23,6 +23,7 @@ public class ProductManager extends Manager<Product> {
 		super(filePath);
 		sortMethod = new SortContext();
 	}
+
 	// Singleton
 	public static ProductManager getInstance(String filePath) {
 		if (productManager == null) {
@@ -37,6 +38,10 @@ public class ProductManager extends Manager<Product> {
 
 	public boolean addNewProduct() {
 		int id = inputID();
+		if (idExisted(id)) {
+			System.out.println("Product ID already existed. Please use another ID.");
+			return false;
+		}
 		ProductType productType = inputProductType();
 		ProductFactory factory = ProductFactory.getInstance();
 		Product newProduct = factory.getProduct(productType, id);
@@ -59,6 +64,15 @@ public class ProductManager extends Manager<Product> {
 			System.out.println("Error: Expect an integer ID number.");
 		}
 		return -1;
+	}
+
+	private boolean idExisted(int id) {
+		for (Product product : list) {
+			if (product.getId() == id) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private ProductType inputProductType() {
@@ -135,6 +149,7 @@ public class ProductManager extends Manager<Product> {
 		sortMethod.setSortMethod(new SortByID());
 		sortMethod.sort(list);
 	}
+
 	// Strategy pattern
 	public void sortByPriceAsc() {
 		sortMethod.setSortMethod(new SortByPriceAsc());

@@ -125,15 +125,6 @@ public class CustomerManager extends Manager<Customer> {
 		return -1;
 	}
 
-//	private boolean idExisted(int id) {
-//		for (Customer customer : list) {
-//			if (customer.getId() == id) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-
 	private Customer inputNewCustomer() {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Name: ");
