@@ -49,8 +49,6 @@ public class Seller {
 					productManager.display();
 					break;
 				case 0:
-					productManager.sortByID();
-					productManager.saveList();
 					System.exit(0);
 				default:
 					System.out.println("Not a choice!");
