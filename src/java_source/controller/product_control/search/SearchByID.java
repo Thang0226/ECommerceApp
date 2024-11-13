@@ -38,16 +38,6 @@ public class SearchByID implements SearchStrategy {
 	}
 
 	private void sortByID(List<Product> list) {
-		// Insertion sort
-		int n = list.size();
-		for (int i = 0; i < n - 1; i++) {
-			int pos = i;
-			Product temp = list.get(i);
-			while (pos > 0 && temp.getId() < list.get(pos - 1).getId()) {
-				list.set(pos, list.get(pos - 1));
-				pos--;
-			}
-			list.set(pos, temp);
-		}
+
 	}
 }

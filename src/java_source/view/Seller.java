@@ -37,6 +37,7 @@ public class Seller {
 					productManager.deleteProduct();
 					break;
 				case 5:
+					productManager.sortByID();
 					productManager.display();
 					break;
 				case 6:
@@ -48,6 +49,8 @@ public class Seller {
 					productManager.display();
 					break;
 				case 0:
+					productManager.sortByID();
+					productManager.saveList();
 					System.exit(0);
 				default:
 					System.out.println("Not a choice!");

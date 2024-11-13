@@ -3,6 +3,10 @@ package java_source.controller.product_control;
 import java_source.controller.abstracts.Manager;
 import java_source.controller.product_control.search.*;
 
+import java_source.controller.product_control.sort.SortByID;
+import java_source.controller.product_control.sort.SortByPriceAsc;
+import java_source.controller.product_control.sort.SortByPriceDesc;
+import java_source.controller.product_control.sort.SortContext;
 import java_source.model.product.Product;
 import java_source.model.product.ProductFactory;
 import java_source.model.product.ProductType;
@@ -12,9 +16,11 @@ import java.util.Scanner;
 
 public class ProductManager extends Manager<Product> {
 	private static ProductManager productManager;
+	private SortContext sortMethod;
 
 	private ProductManager(String filePath) {
 		super(filePath);
+		sortMethod = new SortContext();
 	}
 	// Singleton
 	public static ProductManager getInstance(String filePath) {
@@ -39,6 +45,7 @@ public class ProductManager extends Manager<Product> {
 		Product newProduct = factory.getProduct(productType, id);
 		if (newProduct != null) {
 			add(newProduct);
+			sortByID();
 			saveList();
 			return true;
 		}
@@ -78,6 +85,7 @@ public class ProductManager extends Manager<Product> {
 		for (Product product : list) {
 			if (product.getId() == id) {
 				remove(product);
+				sortByID();
 				saveList();
 				return true;
 			}
@@ -121,37 +129,18 @@ public class ProductManager extends Manager<Product> {
 		searcher.search(list);
 	}
 
+	public void sortByID() {
+		sortMethod.setSortMethod(new SortByID());
+		sortMethod.sort(list);
+	}
+
 	public void sortByPriceAsc() {
-		int n = list.size();
-		// Bubble sort (improved with boolean needNextPass)
-		boolean needNextPass = true;
-		for (int i = 0; i < n - 1 && needNextPass; i++) {
-			needNextPass = false;
-			for (int j = 0; j < n - i - 1; j++) {
-				if (list.get(j).getPrice() > list.get(j + 1).getPrice()) {
-					needNextPass = true;
-					Product temp = list.get(j);
-					list.set(j, list.get(j + 1));
-					list.set(j + 1, temp);
-				}
-			}
-		}
+		sortMethod.setSortMethod(new SortByPriceAsc());
+		sortMethod.sort(list);
 	}
 
 	public void sortByPriceDesc() {
-		int n = list.size();
-		// Bubble sort (improved with boolean needNextPass)
-		boolean needNextPass = true;
-		for (int i = 0; i < n - 1 && needNextPass; i++) {
-			needNextPass = false;
-			for (int j = 0; j < n - i - 1; j++) {
-				if (list.get(j).getPrice() < list.get(j + 1).getPrice()) {
-					needNextPass = true;
-					Product temp = list.get(j);
-					list.set(j, list.get(j + 1));
-					list.set(j + 1, temp);
-				}
-			}
-		}
+		sortMethod.setSortMethod(new SortByPriceDesc());
+		sortMethod.sort(list);
 	}
 }
